@@ -1,0 +1,27 @@
+sum = 0
+
+
+def calculate_sum(n):
+    """
+    This function takes an integer n as input calculates the sum of the series . The function doesnt return a value but updates the global variable sum.
+
+    Parameters:
+    n : The number of terms in the series.
+
+    """
+    global sum
+
+    if n == 1:
+        sum += ((-1) ** 2) / 1
+        return
+
+    term = ((-1) ** (n + 1)) / n
+    sum += term
+    calculate_sum(n - 1)
+
+
+n = int(input("Enter a value for n: "))
+
+calculate_sum(n)
+
+print("Sum:", sum)
