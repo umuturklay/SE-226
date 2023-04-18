@@ -1,0 +1,12 @@
+factorial = lambda n: 1 if n == 0 else n * factorial(n - 1)
+
+n = int(input("Enter a value for n: "))
+x = int(input("Enter a value for x: "))
+
+sum = 0
+
+for i in range(x + 1):
+    term = (n ** i) / factorial(i)
+    sum += term
+
+print("e^n =", sum)
