@@ -1,0 +1,24 @@
+import cv2
+
+
+img = cv2.imread('xdxdxd.jpg')
+
+
+blue_channel, green_channel, red_channel = cv2.split(img)
+
+
+cv2.imshow('Blue Channel', blue_channel)
+cv2.imshow('Green Channel', green_channel)
+cv2.imshow('Red Channel', red_channel)
+cv2.waitKey(0)
+
+
+green_channel = green_channel * 0
+
+
+red_channel = red_channel * 0
+
+edited_img = cv2.merge((blue_channel, green_channel, red_channel))
+
+cv2.imshow('Edited Image', edited_img)
+cv2.waitKey(0)
