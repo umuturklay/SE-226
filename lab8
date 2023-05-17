@@ -1,0 +1,65 @@
+from abc import ABC, abstractmethod
+
+class LetterFrequency(ABC):
+    address = ""
+
+    def __init__(self, address):
+        self.address = address
+
+    @abstractmethod
+    def calculateFreqs(self):
+        pass
+
+class ListCount(LetterFrequency):
+    def calculateFreqs(self):
+        
+        with open(self.address, 'r') as file:
+            text = file.read()
+
+
+        frequencies = [0] * 26
+
+
+        for char in text:
+            if char.isalpha() and char.islower():
+                index = ord(char) - ord('a')
+                frequencies[index] += 1
+
+
+        for i, freq in enumerate(frequencies):
+            letter = chr(i + ord('a'))
+            print(f"{letter} = {freq}")
+
+class DictCount(LetterFrequency):
+    def calculateFreqs(self):
+
+        with open(self.address, 'r') as file:
+            text = file.read()
+
+
+        frequencies = {}
+
+
+        for char in text:
+            if char.isalpha() and char.islower():
+                if char in frequencies:
+                    frequencies[char] += 1
+                else:
+                    frequencies[char] = 1
+
+
+        for letter, freq in frequencies.items():
+            print(f"{letter} = {freq}")
+
+
+file_address = "weirdWords.txt"
+
+
+list_counter = ListCount(file_address)
+print("Letter Frequencies using ListCount:")
+list_counter.calculateFreqs()
+
+
+dict_counter = DictCount(file_address)
+print("Letter Frequencies using DictCount:")
+dict_counter.calculateFreqs()
